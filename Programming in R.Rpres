@@ -117,3 +117,36 @@ for(i in 1:10){
   }
 }
 ```
+
+
+
+Funnctions
+========================================================
+```{r}
+print_name <- function(name_to_print="Etienne"){
+ print(name_to_print) 
+}
+
+print_name()
+print_name("Julie")
+```
+
+Exercise 2
+========================================================
+
+-  using the `iris` data, create a function that will produce a plot of length vs width, with appropriate axis labels  
+-  try to use if statement within the function   
+-  apply this function to sepals and petals   
+
+
+
+Dojo
+========================================================
+
+-  Go to the dryad repository
+-  Find a tropical marine biology data set you find fascinating
+-  Find the associated publication
+-  Attempt to reproduce a figure or an analysis from the paper
+
+https://datadryad.org
+
