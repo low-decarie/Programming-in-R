@@ -1,7 +1,7 @@
 Programming in R
 ========================================================
 author: Etienne Low-Décarie
-date: November 30, 2015
+date: December 6, 2016
 
 Outline
 ========================================================
@@ -31,6 +31,12 @@ require(traits)
 
 #install.packages("oce")
 require(oce)
+```
+
+```{r,echo=FALSE}
+#install.packages("traits")
+require(ggplot2)
+
 ```
 
 
@@ -82,12 +88,14 @@ of sepal width for each species
 Exercise 1
 ========================================================
 
-```{r}
-par(mfrow=c(1,3))
+```{r, fig.height=2,fig.width=2}
 for(Selected_Species in unique(iris$Species)){
- plot(Sepal.Length~Sepal.Width,
-      data=iris[iris$Species==Selected_Species,],
+  
+ p <- qplot(data=iris[iris$Species==Selected_Species,],
+       x=Sepal.Length,
+       y=Sepal.Width,
       main=Selected_Species)
+ print(p)
 }
 ```
 
@@ -120,7 +128,7 @@ for(i in 1:10){
 
 
 
-Funnctions
+Functions
 ========================================================
 ```{r}
 print_name <- function(name_to_print="Etienne"){
@@ -139,14 +147,6 @@ Exercise 2
 -  apply this function to sepals and petals   
 
 
-
-Dojo
+Exercise 2
 ========================================================
-
--  Go to the dryad repository
--  Find a tropical marine biology data set you find fascinating
--  Find the associated publication
--  Attempt to reproduce a figure or an analysis from the paper
-
-https://datadryad.org
 

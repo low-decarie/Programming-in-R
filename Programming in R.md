@@ -1,7 +1,7 @@
 Programming in R
 ========================================================
 author: Etienne Low-Décarie
-date: November 30, 2015
+date: December 6, 2016
 
 Outline
 ========================================================
@@ -33,6 +33,8 @@ require(traits)
 #install.packages("oce")
 require(oce)
 ```
+
+
 
 
 "For" loops
@@ -82,146 +84,27 @@ print(sentence)
 Get data for multiple coral species
 
 
-```r
-coral_trait_data <- NULL
-for(taxon in 2:3){
-  print(taxon)
-  coral_trait_data_temp <- coral_taxa(taxon)
-  coral_trait_data <- rbind(coral_trait_data,coral_trait_data_temp)
-}
+
+
+
+
+
+
+
+
+
+
+```
+processing file: Programming in R.Rpres
+Loading required package: traits
+Loading required package: oce
+Loading required package: ggplot2
+Quitting from lines 71-79 (Programming in R.Rpres) 
+Error: could not find function "coral_taxa"
+In addition: Warning messages:
+1: In library(package, lib.loc = lib.loc, character.only = TRUE, logical.return = TRUE,  :
+  there is no package called 'traits'
+2: In library(package, lib.loc = lib.loc, character.only = TRUE, logical.return = TRUE,  :
+  there is no package called 'oce'
+Execution halted
 ```
-
-```
-[1] 2
-[1] 3
-```
-
-```r
-print(unique(coral_trait_data$specie_name))
-```
-
-```
-[1] "Homophyllia bowerbanki" "Acanthastrea brevis"   
-```
-
-Exercise 1
-========================================================
-
-using the `iris` data and `for` loops
-produce a plot of sepal lenght as a function
-of sepal width for each species
-
-Exercise 1
-========================================================
-
-
-```r
-par(mfrow=c(1,3))
-for(Selected_Species in unique(iris$Species)){
- plot(Sepal.Length~Sepal.Width,
-      data=iris[iris$Species==Selected_Species,],
-      main=Selected_Species)
-}
-```
-
-![plot of chunk unnamed-chunk-5](Programming in R-figure/unnamed-chunk-5-1.png) 
-
-
-
-Other loops
-========================================================
-
-`while` loop
-
-```r
-i=0
-while(i<10){
-  i <- i+1
-  print(i)
-}
-```
-
-```
-[1] 1
-[1] 2
-[1] 3
-[1] 4
-[1] 5
-[1] 6
-[1] 7
-[1] 8
-[1] 9
-[1] 10
-```
-
-
-`If`
-========================================================
-
-```r
-for(i in 1:10){
-  if(i>5){
-    print(i)
-  }else{
-    print("Too small")
-  }
-}
-```
-
-```
-[1] "Too small"
-[1] "Too small"
-[1] "Too small"
-[1] "Too small"
-[1] "Too small"
-[1] 6
-[1] 7
-[1] 8
-[1] 9
-[1] 10
-```
-
-
-
-Funnctions
-========================================================
-
-```r
-print_name <- function(name_to_print="Etienne"){
- print(name_to_print) 
-}
-
-print_name()
-```
-
-```
-[1] "Etienne"
-```
-
-```r
-print_name("Julie")
-```
-
-```
-[1] "Julie"
-```
-
-Exercise 2
-========================================================
-
--  using the `iris` data, create a function that will produce a plot of length vs width, with appropriate axis labels  
--  try to use if statement within the function   
--  apply this function to sepals and petals   
-
-
-
-Dojo
-========================================================
-
--  Go to the dryad repository
--  Find a tropical marine biology data set you find fascinating
--  Find the associated publication
--  Attempt to reproduce a figure or an analysis from the paper
-
-https://datadryad.org
-
