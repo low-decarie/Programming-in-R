@@ -1,7 +1,19 @@
 Programming in R
 ========================================================
 author: Etienne Low-Décarie
-date: November 30, 2015
+date: December 5, 2017
+
+
+Activity 1
+========
+
+Click on bunny
+https://www.google.co.uk/?doodle=32615474
+
+<iframe src=https://www.google.co.uk/?doodle=32615474></iframe>
+
+
+
 
 Outline
 ========================================================
@@ -33,6 +45,8 @@ require(traits)
 #install.packages("oce")
 require(oce)
 ```
+
+
 
 
 "For" loops
@@ -116,15 +130,17 @@ Exercise 1
 
 
 ```r
-par(mfrow=c(1,3))
 for(Selected_Species in unique(iris$Species)){
- plot(Sepal.Length~Sepal.Width,
-      data=iris[iris$Species==Selected_Species,],
+  
+ p <- qplot(data=iris[iris$Species==Selected_Species,],
+       x=Sepal.Length,
+       y=Sepal.Width,
       main=Selected_Species)
+ print(p)
 }
 ```
 
-![plot of chunk unnamed-chunk-5](Programming in R-figure/unnamed-chunk-5-1.png) 
+![plot of chunk unnamed-chunk-6](Programming in R-figure/unnamed-chunk-6-1.png)![plot of chunk unnamed-chunk-6](Programming in R-figure/unnamed-chunk-6-2.png)![plot of chunk unnamed-chunk-6](Programming in R-figure/unnamed-chunk-6-3.png)
 
 
 
@@ -180,3 +196,103 @@ for(i in 1:10){
 [1] 9
 [1] 10
 ```
+
+
+
+Functions
+========================================================
+
+```r
+print_name <- function(name_to_print="Etienne"){
+ print(name_to_print) 
+}
+
+print_name()
+```
+
+```
+[1] "Etienne"
+```
+
+```r
+print_name("Julie")
+```
+
+```
+[1] "Julie"
+```
+
+Exercise 2
+========================================================
+
+-   create a function that has an argument called `data`, with default value `iris`, a second argument called `organ` that will produce a plot of length vs width, with appropriate axis labels
+-  try to use if statement within the function   
+-  apply this function with values of "sepals" and "petals" for the argument "organ" 
+- bonus= use this function in the for loop in Exercise 1 to produce a plot of each organ for each species
+
+
+Exercise 2
+========================================================
+
+
+```r
+plot_organ <- function(data=iris,
+                       organ){
+  if(organ == "sepals"){
+    p <- qplot(data=data,
+               x=Sepal.Length,
+               xlab="Sepal length (cm)",
+               y=Sepal.Width,
+               ylab="Sepal width (cm)",
+               colour=Species)
+  }
+    if(organ == "petals"){
+    p <- qplot(data=data,
+               x=Petal.Length,
+               xlab="Petal length (cm)",
+               y=Petal.Width,
+               ylab="Petal width (cm)",
+               colour=Species)
+    }
+
+  return(p)
+  
+}
+```
+
+
+Exercise 2
+========================================================
+
+
+```r
+plot_organ(organ= "sepals")
+```
+
+![plot of chunk unnamed-chunk-11](Programming in R-figure/unnamed-chunk-11-1.png)
+
+```r
+plot_organ(organ= "petals")
+```
+
+![plot of chunk unnamed-chunk-11](Programming in R-figure/unnamed-chunk-11-2.png)
+
+
+Exercise 2 Bonus
+========================================================
+
+
+
+```r
+for(Selected_Species in unique(iris$Species)){
+  
+p <- plot_organ(data=iris[iris$Species==Selected_Species,],
+           organ= "sepals")
+print(p)
+p <- plot_organ(data=iris[iris$Species==Selected_Species,],
+           organ= "petals")
+print(p)
+}
+```
+
+![plot of chunk unnamed-chunk-12](Programming in R-figure/unnamed-chunk-12-1.png)![plot of chunk unnamed-chunk-12](Programming in R-figure/unnamed-chunk-12-2.png)![plot of chunk unnamed-chunk-12](Programming in R-figure/unnamed-chunk-12-3.png)![plot of chunk unnamed-chunk-12](Programming in R-figure/unnamed-chunk-12-4.png)![plot of chunk unnamed-chunk-12](Programming in R-figure/unnamed-chunk-12-5.png)![plot of chunk unnamed-chunk-12](Programming in R-figure/unnamed-chunk-12-6.png)
